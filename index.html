@@ -127,8 +127,8 @@
 
 <main class="container">
   <!-- APA ITU UNIVERSE - Grid Card Style with hover and subtle color effect -->
-<div class="card" style="background: linear-gradient(135deg, #f8f9fc 30%, #eef2f7 100%);">
-  <h2 class="fade-in-title">📄 Apa itu UNIVERSE ?</h2>
+<div class="card" style="background: linear-gradient(135deg, #fdfaff 30%, #f2f7ff 100%);">
+  <h2 style="animation: fadeInTitle 0.8s ease forwards;">📄 Apa itu UNIVERSE ?</h2>
   <div class="accordion-wrapper">
 
     <div class="accordion-item">
@@ -157,73 +157,123 @@
 </div>
 
 <style>
-  .accordion-wrapper {
-    margin-top: 20px;
-  }
+  * { box-sizing: border-box; }
 
-  .accordion-item {
-    margin-bottom: 15px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    background-color: #fff;
-    transition: box-shadow 0.3s ease;
-  }
-
-  .accordion-item:hover {
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
-  }
-
-  .accordion-button {
-    width: 100%;
-    background-color: #5c2d91;
-    color: white;
-    text-align: left;
-    padding: 15px 20px;
-    border: none;
-    font-weight: bold;
-    font-size: 1.1em;
-    cursor: pointer;
+  body {
+    margin: 0;
     font-family: 'Segoe UI', sans-serif;
+    background: url('https://www.transparenttextures.com/patterns/white-carbon.png');
+    background-color: #f4f7fa;
+    color: #333;
+  }
+
+  header {
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: white;
+    padding: 80px 20px 60px;
+    text-align: center;
+    animation: fadeSlideDown 1s ease forwards;
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  @keyframes fadeSlideDown {
+    0% { opacity: 0; transform: translateY(-30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  header h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+  }
+
+  header p {
+    font-size: 1.2em;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 30px 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: slideIn 0.8s ease forwards;
+  }
+
+  .card:nth-of-type(1) { animation-delay: 0.2s; }
+  .card:nth-of-type(2) { animation-delay: 0.4s; }
+  .card:nth-of-type(3) { animation-delay: 0.6s; }
+  .card:nth-of-type(4) { animation-delay: 0.8s; }
+  .card:nth-of-type(5) { animation-delay: 1s; }
+  .card:nth-of-type(6) { animation-delay: 1.2s; }
+  .card:nth-of-type(7) { animation-delay: 1.4s; }
+
+  @keyframes slideIn {
+    0% { opacity: 0; transform: translateX(-50px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+
+  .card h2 {
+    margin-top: 0;
+    color: #6a11cb;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .donasi-simple {
+    font-size: 2.2em;
+    font-weight: bold;
+    text-align: center;
+    color: #20c997;
+    margin: 10px 0;
+  }
+
+  .donasi-thanks {
+    text-align: center;
+    font-style: italic;
+    color: #666;
+    font-size: 0.95em;
+  }
+
+  .button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 20px;
+    background-color: #6a11cb;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
     transition: background-color 0.3s;
   }
 
-  .accordion-button:hover {
-    background-color: #47227a;
+  .button:hover {
+    background-color: #4b0db5;
   }
 
-  .accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, padding 0.3s ease;
-    padding: 0 20px;
+  footer {
+    text-align: center;
+    background-color: #eaeaea;
+    padding: 30px;
+    font-size: 0.9em;
   }
 
-  .accordion-content.open {
-    max-height: 600px;
-    padding: 15px 20px;
-  }
-
-  .accordion-content p {
-    margin: 0 0 10px;
-    line-height: 1.6;
-    text-align: justify;
-  }
-
-  .fade-in-title {
-    animation: fadeInTitle 0.6s ease forwards;
-    opacity: 0;
-    transform: translateY(-10px);
-    font-family: 'Segoe UI', sans-serif;
-  }
-
-  @keyframes fadeInTitle {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  a {
+    color: #6a11cb;
   }
 </style>
+
 
 <script>
   document.querySelectorAll('.accordion-button').forEach(button => {
@@ -234,6 +284,7 @@
   });
 </script>
 
+  
 <div class="card">
   <h2>🖼️ Poster UNIVERSE 24</h2>
   <p>Untuk informasi visual lengkap, kamu bisa melihat atau mengunduh versi poster berikut:</p>
