@@ -262,6 +262,54 @@
     background-color: #4b0db5;
   }
 
+  .accordion-wrapper {
+    margin-top: 20px;
+  }
+
+  .accordion-item {
+    margin-bottom: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    background-color: #fff;
+  }
+
+  .accordion-button {
+    width: 100%;
+    background-color: #6a11cb;
+    color: white;
+    text-align: left;
+    padding: 15px 20px;
+    border: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    cursor: pointer;
+    font-family: 'Segoe UI', sans-serif;
+    transition: background-color 0.3s;
+  }
+
+  .accordion-button:hover {
+    background-color: #4b0db5;
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+    padding: 0 20px;
+  }
+
+  .accordion-content.open {
+    max-height: 600px;
+    padding: 15px 20px;
+  }
+
+  .accordion-content p {
+    margin: 0 0 10px;
+    line-height: 1.6;
+    text-align: justify;
+  }
+
   footer {
     text-align: center;
     background-color: #eaeaea;
@@ -274,15 +322,17 @@
   }
 </style>
 
-
 <script>
-  document.querySelectorAll('.accordion-button').forEach(button => {
-    button.addEventListener('click', () => {
-      const content = button.nextElementSibling;
-      content.classList.toggle('open');
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.accordion-button').forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        content.classList.toggle('open');
+      });
     });
   });
 </script>
+
 
   
 <div class="card">
