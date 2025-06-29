@@ -1,326 +1,343 @@
 <!DOCTYPE html>
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>UNIVERSE – United Values and Spirit for Twenty-Fours</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Poppins:wght@300;400;600&family=Raleway:wght@600&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: url('https://www.transparenttextures.com/patterns/white-carbon.png');
-      background-color: #f4f7fa;
-      color: #333;
+      font-family: 'Poppins', sans-serif;
+      background-color: #000;
+      color: #e0e0ff;
+      overflow-x: hidden;
+      animation: zoomFade 1.2s ease-out;
+    }
+
+    @keyframes zoomFade {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    canvas#stars {
+      position: fixed;
+      z-index: -1;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
     }
 
     header {
-      background: linear-gradient(to right, #6a11cb, #2575fc);
-      color: white;
-      padding: 80px 20px 60px;
+      background: linear-gradient(270deg, #120037, #2c005a, #39008f);
+      background-size: 600% 600%;
+      animation: headerFadeIn 1.2s ease-out forwards, headerGlow 5s infinite alternate, gradientShift 12s ease infinite;
+      color: #ffffff;
       text-align: center;
-      animation: fadeSlideDown 1s ease forwards;
+      padding: 80px 20px 60px;
       opacity: 0;
-      transform: translateY(-30px);
+      transform: translateY(-40px);
     }
 
-    @keyframes fadeSlideDown {
-      0% { opacity: 0; transform: translateY(-30px); }
-      100% { opacity: 1; transform: translateY(0); }
+    @keyframes headerFadeIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes headerGlow {
+      0% { box-shadow: 0 0 20px #39008f; }
+      100% { box-shadow: 0 0 40px #88ccff; }
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     header h1 {
-      font-size: 3em;
-      margin-bottom: 10px;
+      font-size: 3.5em;
+      font-family: 'Orbitron', sans-serif;
+      color: #88ccff;
+      text-shadow: 0 0 15px #88ccff;
     }
 
     header p {
       font-size: 1.2em;
+      color: #cfd9ff;
+      text-shadow: 0 0 5px #334477;
+      margin-top: 10px;
     }
 
     .container {
       max-width: 1000px;
       margin: auto;
-      padding: 30px 20px;
+      padding: 40px 20px;
       display: grid;
       grid-template-columns: 1fr;
-      gap: 30px;
+      gap: 40px;
     }
 
     .card {
-      background-color: white;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      background: #0a0a1a;
+      border: 1px solid #1f1f3a;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 100, 255, 0.1);
       opacity: 0;
-      transform: translateX(-50px);
-      animation: slideIn 0.8s ease forwards;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease forwards;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(15px) scale(1.01);
+      box-shadow: 0 0 30px rgba(0, 150, 255, 0.3);
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .card:nth-child(1) { animation-delay: 0.2s; }
     .card:nth-child(2) { animation-delay: 0.4s; }
     .card:nth-child(3) { animation-delay: 0.6s; }
     .card:nth-child(4) { animation-delay: 0.8s; }
-
-    @keyframes slideIn {
-      0% { opacity: 0; transform: translateX(-50px); }
-      100% { opacity: 1; transform: translateX(0); }
-    }
+    .card:nth-child(5) { animation-delay: 1s; }
+    .card:nth-child(6) { animation-delay: 1.2s; }
 
     .card h2 {
-      margin-top: 0;
-      color: #6a11cb;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      color: #80d4ff;
+      text-shadow: 0 0 10px #80d4ff88;
+      font-family: 'Raleway', sans-serif;
+      margin-bottom: 20px;
+    }
+
+    .card p,
+    .card li,
+    .accordion-content p {
+      line-height: 1.8;
+      margin-bottom: 10px;
+      text-align: justify;
+    }
+
+    .accordion-wrapper {
+      margin-top: 20px;
+    }
+
+    .accordion-item {
+      margin-bottom: 15px;
+      background-color: #111122;
+      border: 1px solid #222244;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .accordion-button {
+      background-color: #24005b;
+      color: white;
+      width: 100%;
+      padding: 15px 20px;
+      font-weight: bold;
+      font-size: 1.1em;
+      cursor: pointer;
+      border: none;
+      text-align: left;
+      transition: 0.3s;
+    }
+
+    .accordion-button:hover {
+      background-color: #380085;
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 20px;
+      transition: max-height 0.4s ease, padding 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    .accordion-content.open {
+      max-height: 600px;
+      padding: 15px 20px;
+      opacity: 1;
+      animation: accordionFade 0.5s ease-in;
+    }
+
+    @keyframes accordionFade {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .button {
+      background-color: #39008f;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      transition: background-color 0.3s;
+      margin-top: 10px;
+    }
+
+    .button:hover {
+      background-color: #4f00b5;
     }
 
     .donasi-simple {
       font-size: 2.2em;
       font-weight: bold;
-      text-align: center;
-      color: #20c997;
-      margin: 10px 0;
+      color: #00ffcc;
+      text-align: center !important;
+      text-shadow: 0 0 12px #00ffccaa;
+      margin-bottom: 15px;
     }
 
     .donasi-thanks {
-      text-align: center;
+      text-align: center !important;
       font-style: italic;
-      color: #666;
-      font-size: 0.95em;
+      color: #ccc;
+      margin-top: 5px;
     }
 
-    .button {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 12px 20px;
-      background-color: #6a11cb;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: background-color 0.3s;
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      background: #0e0e1e;
     }
 
-    .button:hover {
-      background-color: #4b0db5;
+    th, td {
+      padding: 12px 10px;
+      color: #f0f0ff;
+    }
+
+    thead {
+      background-color: #1c1c3b;
+    }
+
+    tbody tr {
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
 
     footer {
       text-align: center;
-      background-color: #eaeaea;
+      background-color: #0f0f1a;
       padding: 30px;
-      font-size: 0.9em;
+      color: #8888aa;
+      font-size: 0.95em;
     }
 
     a {
-      color: #6a11cb;
+      color: #88ccee;
     }
-    
+
+    .floating-cta {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #24005b;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 1.8em;
+      cursor: pointer;
+      box-shadow: 0 0 15px #88ccff;
+      z-index: 1000;
+      transition: background-color 0.3s;
+    }
+
+    .floating-cta:hover {
+      background-color: #39008f;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>UNIVERSE</h1>
-    <p>United Values and Spirit for Twenty-Fours</p>
-  </header>
+  <button class="floating-cta" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">↑</button>
+  <canvas id="stars"></canvas>
+
+<header>
+  <h1>UNIVERSE</h1>
+  <p>United Values and Spirit for Twenty-Fours</p>
+</header>
 
 <main class="container">
-  <!-- APA ITU UNIVERSE - Grid Card Style with hover and subtle color effect -->
-<div class="card" style="background: linear-gradient(135deg, #fdfaff 30%, #f2f7ff 100%);">
-  <h2 style="animation: fadeInTitle 0.8s ease forwards;">📄 Apa itu UNIVERSE ?</h2>
-  <div class="accordion-wrapper">
-
-    <div class="accordion-item">
-      <button class="accordion-button">Tentang Kegiatan</button>
-      <div class="accordion-content">
-        <p><strong>UNIVERSE</strong> (<em>United Values and Spirit for Twenty-Fours</em>) merupakan acara angkatan yang dibuat oleh mahasiswa Institut Teknologi Kalimantan angkatan 2024. Dengan tujuan mengimplementasikan Tri Dharma Perguruan Tinggi yaitu pengabdian kepada masyarakat serta menerapkan nilai “SPECTA”.</p>
+  <div class="card">
+    <h2>🪐 Apa itu UNIVERSE?</h2>
+    <div class="accordion-wrapper">
+      <div class="accordion-item">
+        <button class="accordion-button">Tentang Kegiatan</button>
+        <div class="accordion-content">
+          <p>UNIVERSE (United Values and Spirit for Twenty-Fours) merupakan acara angkatan yang dibuat oleh mahasiswa Institut Teknologi Kalimantan angkatan 2024. Dengan tujuan mengimplementasikan Tri Dharma Perguruan Tinggi yaitu pengabdian kepada masyarakat serta menerapkan nilai “SPECTA”.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-button">Tujuan</button>
+        <div class="accordion-content">
+          <p>Menumbuhkan empati dan kepedulian sosial mahasiswa ITK angkatan 2024 terhadap masyarakat Balikpapan yang membutuhkan. Mengimplementasikan nilai pengabdian masyarakat dari Tri Dharma Perguruan Tinggi dengan memberikan santunan kepada masyarakat yang membutuhkan. Menerapkan nilai-nilai SPECTA (Solid, Peduli, Cerdas, Beriman dan Bertaqwa) antar mahasiswa ITK angkatan 2024 melalui kegiatan family gathering.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-button">Bentuk Kegiatan</button>
+        <div class="accordion-content">
+          <p><strong>Bakti Sosial:</strong> Penyaluran donasi kebutuhan bahan pokok dan perlengkapan pendidikan kepada panti asuhan dan masyarakat yang membutuhkan di Balikpapan.</p>
+          <p><strong>Family Gathering:</strong> Ajang silaturahmi untuk mahasiswa ITK angkatan 2024 yang diisi dengan permainan, penampilan hiburan, dan kegiatan kebersamaan lainnya.</p>
+        </div>
       </div>
     </div>
-
-    <div class="accordion-item">
-      <button class="accordion-button">Tujuan</button>
-      <div class="accordion-content">
-        <p>Menumbuhkan empati dan kepedulian sosial mahasiswa ITK angkatan 2024 terhadap masyarakat Balikpapan yang membutuhkan. Mengimplementasikan nilai pengabdian masyarakat dari Tri Dharma Perguruan Tinggi dengan memberikan santunan kepada masyarakat yang membutuhkan. Menerapkan nilai-nilai SPECTA (Solid, Peduli, Cerdas, Beriman dan Bertaqwa) antar mahasiswa ITK angkatan 2024 melalui kegiatan family gathering.</p>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <button class="accordion-button">Bentuk Kegiatan</button>
-      <div class="accordion-content">
-        <p><strong>Bakti Sosial:</strong> Penyaluran donasi kebutuhan bahan pokok dan perlengkapan pendidikan kepada panti asuhan dan masyarakat yang membutuhkan di Balikpapan.</p>
-        <p><strong>Family Gathering:</strong> Ajang silaturahmi untuk mahasiswa ITK angkatan 2024 yang diisi dengan permainan, penampilan hiburan, dan kegiatan kebersamaan lainnya.</p>
-      </div>
-    </div>
-
   </div>
-</div>
 
-<style>
-  * { box-sizing: border-box; }
+  <div class="card">
+    <h2>🌌 Poster UNIVERSE 24</h2>
+    <p>Lihat atau unduh poster berikut:</p>
+    <a href="https://drive.google.com/uc?export=download&id=1W1ie9Mu4AD-YyZ0WcJX1rYjMzQRLYJ3g" target="_blank" class="button">Lihat Poster</a>
+  </div>
 
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: url('https://www.transparenttextures.com/patterns/white-carbon.png');
-    background-color: #f4f7fa;
-    color: #333;
-  }
+  <div class="card">
+    <h2>🌠 Donasi Terkumpul</h2>
+    <div class="donasi-simple">Rp 0</div>
+    <p class="donasi-thanks">Terima kasih kepada seluruh pihak yang telah berkontribusi!</p>
+  </div>
 
-  header {
-    background: linear-gradient(to right, #6a11cb, #2575fc);
-    color: white;
-    padding: 80px 20px 60px;
-    text-align: center;
-    animation: fadeSlideDown 1s ease forwards;
-    opacity: 0;
-    transform: translateY(-30px);
-  }
+  <div class="card">
+    <h2>🛰️ Penyaluran Dana</h2>
+    <p>Donasi yang terkumpul akan disalurkan sepenuhnya kepada masyarakat yang membutuhkan melalui kegiatan bakti sosial di 25 lokasi di Kota Balikpapan. Rincian umum penyaluran dana disajikan pada tabel berikut:</p>
+    <table>
+      <thead>
+        <tr><th>📌 Keterangan</th><th style="text-align:right">Jumlah (Rp)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>🎁 Donasi ke masyarakat</td><td style="text-align:right">-</td></tr>
+        <tr><td><strong>Total</strong></td><td style="text-align:right"><strong>-</strong></td></tr>
+      </tbody>
+    </table>
+    <a href="https://drive.google.com/uc?export=download&id=1REPLACEID" target="_blank" class="button">Lihat Bukti Penyaluran Dana</a>
+    <p style="font-size: 0.85em; font-style: italic; color: #aaa;">Dokumen berupa surat penerimaan dan dokumentasi tersedia dalam folder Drive.</p>
+  </div>
 
-  @keyframes fadeSlideDown {
-    0% { opacity: 0; transform: translateY(-30px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
+  <div class="card">
+    <h2>🌟 Berita Acara</h2>
+    <p>(Berita acara akan ditambahkan setelah kegiatan dilaksanakan)</p>
+  </div>
 
-  header h1 {
-    font-size: 3em;
-    margin-bottom: 10px;
-  }
+  <div class="card">
+    <h2>🚀 Unduh Proposal</h2>
+    <p>Proposal lengkap dapat diakses di bawah ini:</p>
+    <a href="https://drive.google.com/uc?export=download&id=18dyiATJilIPfAej9Gz7PcegWCb_Bu9qv" target="_blank" class="button">Unduh Proposal PDF</a>
+  </div>
+</main>
 
-  header p {
-    font-size: 1.2em;
-  }
-
-  .container {
-    max-width: 1000px;
-    margin: auto;
-    padding: 30px 20px;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .card {
-    background-color: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    opacity: 0;
-    transform: translateX(-50px);
-    animation: slideIn 0.8s ease forwards;
-  }
-
-  .card:nth-of-type(1) { animation-delay: 0.2s; }
-  .card:nth-of-type(2) { animation-delay: 0.4s; }
-  .card:nth-of-type(3) { animation-delay: 0.6s; }
-  .card:nth-of-type(4) { animation-delay: 0.8s; }
-  .card:nth-of-type(5) { animation-delay: 1s; }
-  .card:nth-of-type(6) { animation-delay: 1.2s; }
-  .card:nth-of-type(7) { animation-delay: 1.4s; }
-
-  @keyframes slideIn {
-    0% { opacity: 0; transform: translateX(-50px); }
-    100% { opacity: 1; transform: translateX(0); }
-  }
-
-  .card h2 {
-    margin-top: 0;
-    color: #6a11cb;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .donasi-simple {
-    font-size: 2.2em;
-    font-weight: bold;
-    text-align: center;
-    color: #20c997;
-    margin: 10px 0;
-  }
-
-  .donasi-thanks {
-    text-align: center;
-    font-style: italic;
-    color: #666;
-    font-size: 0.95em;
-  }
-
-  .button {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 12px 20px;
-    background-color: #6a11cb;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s;
-  }
-
-  .button:hover {
-    background-color: #4b0db5;
-  }
-
-  .accordion-wrapper {
-    margin-top: 20px;
-  }
-
-  .accordion-item {
-    margin-bottom: 15px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-    background-color: #fff;
-  }
-
-  .accordion-button {
-    width: 100%;
-    background-color: #6a11cb;
-    color: white;
-    text-align: left;
-    padding: 15px 20px;
-    border: none;
-    font-weight: bold;
-    font-size: 1.1em;
-    cursor: pointer;
-    font-family: 'Segoe UI', sans-serif;
-    transition: background-color 0.3s;
-  }
-
-  .accordion-button:hover {
-    background-color: #4b0db5;
-  }
-
-  .accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, padding 0.3s ease;
-    padding: 0 20px;
-  }
-
-  .accordion-content.open {
-    max-height: 600px;
-    padding: 15px 20px;
-  }
-
-  .accordion-content p {
-    margin: 0 0 10px;
-    line-height: 1.6;
-    text-align: justify;
-  }
-
-  footer {
-    text-align: center;
-    background-color: #eaeaea;
-    padding: 30px;
-    font-size: 0.9em;
-  }
-
-  a {
-    color: #6a11cb;
-  }
-</style>
+<footer>
+  Instagram: <a href="https://www.instagram.com/angkatan24_itk" target="_blank">@angkatan24_itk</a><br>
+  &copy; 2025 UNIVERSE | Mahasiswa ITK 2024
+</footer>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -330,82 +347,14 @@
         content.classList.toggle('open');
       });
     });
-  });
-</script>
 
-
-  
-<div class="card">
-  <h2>🖼️ Poster UNIVERSE 24</h2>
-  <p>Untuk informasi visual lengkap, kamu bisa melihat atau mengunduh versi poster berikut:</p>
-  <a href="https://drive.google.com/uc?export=download&id=1W1ie9Mu4AD-YyZ0WcJX1rYjMzQRLYJ3g" target="_blank" class="button">Lihat Poster</a>
-</div>
-
-  <!-- Bagian lainnya tetap seperti semula -->
-
-  <div class="card">
-    <h2>💵 Donasi Terkumpul</h2>
-    <div class="donasi-simple">Rp 0</div>
-    <p class="donasi-thanks">Terima kasih kepada seluruh pihak yang telah ikut berkontribusi. Dukungan Anda sangat berarti!</p>
-  </div>
-
-<!-- Penyaluran Dana -->
-<div class="card">
-  <h2>📊 Penyaluran Dana</h2>
-  <p>Donasi yang terkumpul akan disalurkan sepenuhnya kepada masyarakat yang membutuhkan melalui kegiatan bakti sosial di 25 lokasi di Kota Balikpapan. Rincian umum penyaluran dana disajikan pada tabel berikut:</p>
-
-  <table style="width: 100%; margin-top: 20px; border-collapse: collapse;">
-    <thead style="background-color: #f3f3f3;">
-      <tr>
-        <th style="text-align: left; padding: 10px; font-weight: bold;">📌 Keterangan</th>
-        <th style="text-align: right; padding: 10px; font-weight: bold;">Jumlah (Rp)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td style="padding: 10px;">🎁 Donasi ke masyarakat</td>
-        <td style="text-align: right; padding: 10px;">-</td>
-      </tr>
-      <tr style="border-top: 2px solid #ccc;">
-        <td style="padding: 10px; font-weight: bold;">Total</td>
-        <td style="text-align: right; padding: 10px; font-weight: bold;">-</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <a href="https://drive.google.com/uc?export=download&id=1REPLACEID" target="_blank" class="button" style="margin-top: 20px; display: inline-block;">
-     Lihat Bukti Penyaluran Dana (Drive)
-  </a>
-  <p style="font-size: 0.85em; font-style: italic; color: #666; margin-top: 5px;">
-Dokumen berupa surat penerimaan, dokumentasi, dan transparasi dana tersedia dalam folder Drive.
-</p>
-</div>
-
-  <div class="card">
-    <h2>📰 Berita Acara</h2>
-    <p>(Berita acara akan ditambahkan setelah kegiatan dilaksanakan)</p>
-  </div>
-
-  <div class="card">
-    <h2> 🔗 Unduh Proposal</h2>
-    <p>Kamu bisa membaca proposal lengkap melalui tombol berikut:</p>
-    <a href="https://drive.google.com/uc?export=download&id=18dyiATJilIPfAej9Gz7PcegWCb_Bu9qv" target="_blank" class="button">Unduh Proposal PDF</a>
-  </div>
-</main>
-
-  <footer>
-    Instagram: <a href="https://www.instagram.com/angkatan24_itk?igsh=MTNhajdpaDQ4Mm0yMQ==" target="_blank">@angkatan24_itk</a><br>
-    &copy; 2025 UNIVERSE | Mahasiswa ITK 2024
-  </footer>
-
-<script>
-  window.addEventListener("load", () => {
+    // Animasi donasi
     const target = document.querySelector(".donasi-simple");
     if (!target) return;
 
     let count = 0;
     const targetValue = 6238110;
-    const duration = 3000; // durasi total 3 detik
+    const duration = 3000;
     const steps = 60;
     const increment = Math.ceil(targetValue / steps);
     const interval = duration / steps;
@@ -423,7 +372,53 @@ Dokumen berupa surat penerimaan, dokumentasi, dan transparasi dana tersedia dala
       }).format(count);
     }, interval);
   });
-</script>
 
+  // Background bintang
+  const canvas = document.getElementById("stars");
+  const ctx = canvas.getContext("2d");
+  let stars = [];
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  function initStars() {
+    stars = [];
+    for (let i = 0; i < 150; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.2,
+        alpha: Math.random(),
+        delta: Math.random() * 0.02
+      });
+    }
+  }
+
+  function drawStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#ffffff";
+    stars.forEach(s => {
+      s.alpha += s.delta;
+      if (s.alpha <= 0 || s.alpha >= 1) s.delta *= -1;
+      ctx.globalAlpha = s.alpha;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, 2 * Math.PI);
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(drawStars);
+  }
+
+  window.addEventListener('resize', () => {
+    resizeCanvas();
+    initStars();
+  });
+
+  resizeCanvas();
+  initStars();
+  drawStars();
+</script>
 </body>
 </html>
